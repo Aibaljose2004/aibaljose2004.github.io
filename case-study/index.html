@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Aibal Jose — Case Studies showcasing design thinking, problem-solving, and implementation of real-world projects." />
+  <meta name="keywords" content="case study, design thinking, UX, development, Aibal Jose, portfolio" />
+  <meta name="author" content="Aibal Jose" />
+  <meta name="theme-color" content="#3d76f5" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="application-name" content="Aibal Jose Portfolio" />
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Case Studies — Aibal Jose" />
+  <meta property="og:description" content="Explore detailed case studies of my projects and solutions." />
+  <meta property="og:site_name" content="Aibal Jose Portfolio" />
+  <meta property="og:image" content="../assests/aibal.png" />
+  <meta property="og:image:alt" content="Aibal Jose Portfolio" />
+  
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Case Studies — Aibal Jose" />
+  <meta name="twitter:description" content="In-depth case studies of innovative projects and solutions." />
+  <meta name="twitter:image" content="../assests/aibal.png" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://aibalj.com/case-study" />
+  
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://cdn.tailwindcss.com" />
+  
+  <title>Case Studies — Aibal Jose</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+
+    html {
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    html::-webkit-scrollbar {
+      display: none;
+    }
+
+    .resume-btn {
+      border: 1.5px solid #3d76f5;
+      color: #3d76f5;
+      border-radius: 999px;
+      padding: 8px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+    .resume-btn:hover { background: #eef3ff; }
+
+    .nav-link {
+      font-size: 15px;
+      font-weight: 500;
+      color: #222;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .nav-link.active { font-weight: 700; }
+    .nav-link:hover { color: #3d76f5; }
+
+    .divider { width: 1px; height: 18px; background: #ccc; }
+
+    /* Mouse Pointer Animation */
+    .cursor-follower {
+      position: fixed;
+      width: 30px;
+      height: 30px;
+      border: 2px solid #3d76f5;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      opacity: 0.6;
+      box-shadow: 0 0 15px rgba(61, 118, 245, 0.5);
+      transition: opacity 0.2s ease;
+    }
+
+    .cursor-follower.active {
+      opacity: 1;
+      box-shadow: 0 0 25px rgba(61, 118, 245, 0.8);
+    }
+
+    .cursor-dot {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: #3d76f5;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 10000;
+      transform: translate(-50%, -50%);
+      opacity: 0.8;
+    }
+
+    /* Hide default cursor */
+    body {
+      cursor: none;
+    }
+
+    a, button {
+      cursor: none;
+    }
+
+    /* Mobile Bottom Navigation */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid #f0f0f0;
+      padding: 12px 0 20px 0;
+      z-index: 50;
+      width: 100%;
+    }
+
+    .mobile-nav-content {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      max-width: 100%;
+      padding: 0 12px;
+    }
+
+    .mobile-nav-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      text-decoration: none;
+      color: #222;
+      font-size: 12px;
+      font-weight: 600;
+      transition: color 0.2s;
+      padding: 8px 12px;
+    }
+
+    .mobile-nav-link:hover {
+      color: #3d76f5;
+    }
+
+    .mobile-nav-icon {
+      font-size: 20px;
+    }
+
+    /* Desktop navbar hides on mobile */
+    nav {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+
+    .fade-in-delay-1 { animation-delay: 0.1s; }
+    .fade-in-delay-2 { animation-delay: 0.2s; }
+    .fade-in-delay-3 { animation-delay: 0.3s; }
+
+    @media (max-width: 868px) {
+      .desktop-nav {
+        display: none;
+      }
+
+      .mobile-nav {
+        display: block;
+      }
+
+      body {
+        padding-bottom: 70px;
+      }
+    }
+
+  </style>
+</head>
+<body class="bg-white overflow-x-hidden">
+
+  <!-- Custom Cursor Elements -->
+  <div class="cursor-follower" id="cursorFollower"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- Navbar -->
+  <nav class="desktop-nav lg:flex items-center justify-between lg:px-12 lg:py-5 bg-white fixed top-0 left-0 right-0 z-50" style="border-bottom: 1px solid #f0f0f0; backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.95);" role="navigation" aria-label="Main navigation">
+    <div class="flex items-center gap-6 pl-[110px]">
+      <a class="nav-link" href="/">Home</a>
+      <div class="divider" aria-hidden="true"></div>
+      <a class="nav-link" href="/about">About</a>
+      <div class="divider" aria-hidden="true"></div>
+      <a class="nav-link" href="/projects">Projects</a>
+      <div class="divider" aria-hidden="true"></div>
+      <a class="nav-link active" href="/case-study" aria-current="page">Case Study</a>
+      <div class="divider" aria-hidden="true"></div>
+      <a class="nav-link" href="/services">Services</a>
+    </div>
+    <a class="resume-btn" href="#" aria-label="Download Resume">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M8 2v9M4 8l4 4 4-4M2 14h12" stroke="#3d76f5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Resume
+      <svg width="12" height="12" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M4 6l4 4 4-4" stroke="#3d76f5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </nav>
+
+  <!-- Mobile Bottom Navigation -->
+  <nav class="mobile-nav" role="navigation" aria-label="Mobile navigation">
+    <div class="mobile-nav-content">
+      <a class="mobile-nav-link" href="/" aria-label="Home">
+        <span class="mobile-nav-icon">🏠</span>
+        <span>Home</span>
+      </a>
+      <a class="mobile-nav-link" href="/about" aria-label="About">
+        <span class="mobile-nav-icon">👤</span>
+        <span>About</span>
+      </a>
+      <a class="mobile-nav-link" href="/projects" aria-label="Projects">
+        <span class="mobile-nav-icon">💼</span>
+        <span>Projects</span>
+      </a>
+      <a class="mobile-nav-link" href="/case-study" aria-label="Case Study" style="color: #3d76f5; font-weight: 700;">
+        <span class="mobile-nav-icon">📋</span>
+        <span>Case Study</span>
+      </a>
+      <a class="mobile-nav-link" href="/services" aria-label="Services">
+        <span class="mobile-nav-icon">⚙️</span>
+        <span>Services</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <section style="padding: 110px 48px 80px; max-width: 1180px; margin: 0 auto;">
+
+    <!-- Section Header -->
+    <div class="fade-in" style="text-align: center; margin-bottom: 60px;">
+      <h1 style="font-size: 42px; font-weight: 700; color: #111; margin-bottom: 16px;">Case Studies</h1>
+      <p style="font-size: 16px; color: #555; max-width: 600px; margin: 0 auto; line-height: 1.6;">Deep dives into my design and development process, challenges overcome, and solutions delivered</p>
+    </div>
+
+    <!-- Case Study 1: YKS World -->
+    <div class="fade-in fade-in-delay-1" style="margin-bottom: 80px; border-top: 1px solid #ebebeb; padding-top: 60px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;">
+        <div>
+          <div style="font-size: 13px; font-weight: 600; color: #3d76f5; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px;">Travel & Booking</div>
+          <h2 style="font-size: 32px; font-weight: 700; color: #111; margin-bottom: 16px;">YKS World</h2>
+          <p style="font-size: 15px; color: #555; line-height: 1.8; margin-bottom: 24px;">A comprehensive travel booking and itinerary planning application designed to make trip planning seamless. Users can discover destinations, book travel packages, and manage their itineraries all in one place.</p>
+          
+          <div style="margin-bottom: 32px;">
+            <div style="font-size: 13px; font-weight: 600; color: #111; margin-bottom: 12px;">Technologies</div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <span style="background: #eef3ff; color: #3d76f5; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;">Flutter</span>
+              <span style="background: #eef3ff; color: #3d76f5; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;">Firebase</span>
+              <span style="background: #eef3ff; color: #3d76f5; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;">Google Maps API</span>
+            </div>
+          </div>
+
+          <a href="https://play.google.com/store/apps/details?id=com.yksworld.app" target="_blank" style="display: inline-block; background: #3d76f5; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px;" onmouseover="this.style.background='#2a5fdb'" onmouseout="this.style.background='#3d76f5';">Download on Play Store</a>
+        </div>
+        <div style="background: linear-gradient(135deg, #c8d8ff, #e0d4f7); border-radius: 16px; padding: 32px; min-height: 400px; display: flex; align-items: center; justify-content: center;">
+          <div style="text-align: center;">
+            <div style="font-size: 48px; margin-bottom: 16px;">✈️</div>
+            <div style="font-size: 18px; font-weight: 600; color: #1a3a8f;">Travel Booking Platform</div>
+            <div style="font-size: 13px; color: #2a4faa; margin-top: 8px;">Book, Plan & Explore</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Case Study 2: PrintSuit -->
+    <div class="fade-in fade-in-delay-2" style="margin-bottom: 80px; border-top: 1px solid #ebebeb; padding-top: 60px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;">
+        <div style="background: linear-gradient(135deg, #e0d4f7, #d4f0c8); border-radius: 16px; padding: 32px; min-height: 400px; display: flex; align-items: center; justify-content: center; order: 2;">
+          <div style="text-align: center;">
+            <div style="font-size: 48px; margin-bottom: 16px;">🖨️</div>
+            <div style="font-size: 18px; font-weight: 600; color: #3a1a7a;">Distributed Printing</div>
+            <div style="font-size: 13px; color: #5a2aaa; margin-top: 8px;">Remote Queue Management</div>
+          </div>
+        </div>
+        <div style="order: 1;">
+          <div style="font-size: 13px; font-weight: 600; color: #3d76f5; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px;">Enterprise Solution</div>
+          <h2 style="font-size: 32px; font-weight: 700; color: #111; margin-bottom: 16px;">PrintSuit</h2>
+          <p style="font-size: 15px; color: #555; line-height: 1.8; margin-bottom: 24px;">An intelligent remote printing system that enables distributed printing from multiple devices. Features include real-time queue management, printer status tracking, and job scheduling.</p>
+          
+          <div style="margin-bottom: 32px;">
+            <div style="font-size: 13px; font-weight: 600; color: #111; margin-bottom: 12px;">Technologies</div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <span style="background: #e0d4f7; color: #3a1a7a; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;">Python</span>
+              <span style="background: #e0d4f7; color: #3a1a7a; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;">Flask</span>
+              <span style="background: #e0d4f7; color: #3a1a7a; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;">Socket.io</span>
+            </div>
+          </div>
+
+          <a href="https://github.com/aibaljose/PrintSuit" target="_blank" style="display: inline-block; background: #3a1a7a; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px;" onmouseover="this.style.background='#2a0f5a'" onmouseout="this.style.background='#3a1a7a';">View Source Code</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Case Study 3: Muonam -->
+    <div class="fade-in fade-in-delay-3" style="border-top: 1px solid #ebebeb; padding-top: 60px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;">
+        <div>
+          <div style="font-size: 13px; font-weight: 600; color: #3d76f5; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px;">Gamification</div>
+          <h2 style="font-size: 32px; font-weight: 700; color: #111; margin-bottom: 16px;">Muonam</h2>
+          <p style="font-size: 15px; color: #555; line-height: 1.8; margin-bottom: 24px;">An interactive online treasure hunt and gaming platform with real-time leaderboards and multiplayer challenges. Designed to create engaging community experiences with instant feedback and competitive elements.</p>
+          
+          <div style="margin-bottom: 32px;">
+            <div style="font-size: 13px; font-weight: 600; color: #111; margin-bottom: 12px;">Technologies</div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <span style="background: #c8eef7; color: #0a3d5c; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;">React</span>
+              <span style="background: #c8eef7; color: #0a3d5c; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;">Node.js</span>
+              <span style="background: #c8eef7; color: #0a3d5c; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 500;">Real-time Sockets</span>
+            </div>
+          </div>
+
+          <a href="https://github.com/aibaljose/muonam" target="_blank" style="display: inline-block; background: #0a3d5c; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px;" onmouseover="this.style.background='#052844'" onmouseout="this.style.background='#0a3d5c';">Explore Project</a>
+        </div>
+        <div style="background: linear-gradient(135deg, #c8eef7, #ffe8b2); border-radius: 16px; padding: 32px; min-height: 400px; display: flex; align-items: center; justify-content: center;">
+          <div style="text-align: center;">
+            <div style="font-size: 48px; margin-bottom: 16px;">🏆</div>
+            <div style="font-size: 18px; font-weight: 600; color: #0a3d5c;">Treasure Hunt Game</div>
+            <div style="font-size: 13px; color: #145c80; margin-top: 8px;">Real-time Leaderboards</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <script>
+    const cursorFollower = document.getElementById('cursorFollower');
+    const cursorDot = document.getElementById('cursorDot');
+    let mouseX = 0;
+    let mouseY = 0;
+    let followerX = 0;
+    let followerY = 0;
+    let isMouseMoving = false;
+    let mouseTimeout;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      cursorDot.style.left = mouseX + 'px';
+      cursorDot.style.top = mouseY + 'px';
+
+      if (!isMouseMoving) {
+        isMouseMoving = true;
+        cursorFollower.style.opacity = '0.6';
+        cursorDot.style.opacity = '0.8';
+      }
+
+      clearTimeout(mouseTimeout);
+      mouseTimeout = setTimeout(() => {
+        isMouseMoving = false;
+        cursorFollower.style.opacity = '0.3';
+        cursorDot.style.opacity = '0.3';
+      }, 1000);
+    });
+
+    function animateFollower() {
+      followerX += (mouseX - followerX) * 0.15;
+      followerY += (mouseY - followerY) * 0.15;
+
+      cursorFollower.style.left = followerX + 'px';
+      cursorFollower.style.top = followerY + 'px';
+
+      requestAnimationFrame(animateFollower);
+    }
+
+    animateFollower();
+
+    const interactiveElements = document.querySelectorAll('a, button, [role="navigation"] a');
+    
+    interactiveElements.forEach((element) => {
+      element.addEventListener('mouseenter', () => {
+        cursorFollower.classList.add('active');
+        cursorFollower.style.width = '40px';
+        cursorFollower.style.height = '40px';
+      });
+
+      element.addEventListener('mouseleave', () => {
+        cursorFollower.classList.remove('active');
+        cursorFollower.style.width = '30px';
+        cursorFollower.style.height = '30px';
+      });
+    });
+
+    document.addEventListener('mouseleave', () => {
+      cursorFollower.style.opacity = '0';
+      cursorDot.style.opacity = '0';
+    });
+
+    document.addEventListener('mouseenter', () => {
+      cursorFollower.style.opacity = '0.6';
+      cursorDot.style.opacity = '0.8';
+    });
+  </script>
+
+</body>
+</html>

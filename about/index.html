@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About — Aibal Jose</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            --blue: #3d76f5;
+            --blue-light: #eef3ff;
+            --dark: #111;
+            --mid: #555;
+            --light: #f5f5f5;
+            --border: #ebebeb;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+         * { font-family: 'Inter', sans-serif; }
+
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        html::-webkit-scrollbar { display: none; }
+
+        body {
+            /* font-family: 'DM Sans', sans-serif; */
+            background: #ffffff;
+            color: var(--dark);
+            cursor: none;
+            overflow-x: hidden;
+        }
+
+        /* h1, h2, h3, .syne { font-family: 'Syne', sans-serif; } */
+
+        /* ── CURSOR ── */
+        .cursor-follower {
+            position: fixed; width: 30px; height: 30px;
+            border: 2px solid var(--blue); border-radius: 50%;
+            pointer-events: none; z-index: 9999;
+            transform: translate(-50%, -50%);
+            opacity: 0.6;
+            box-shadow: 0 0 15px rgba(61, 118, 245, 0.5);
+            transition: opacity 0.2s ease;
+        }
+        .cursor-follower.active {
+            opacity: 1;
+            box-shadow: 0 0 25px rgba(61, 118, 245, 0.8);
+        }
+        .cursor-dot {
+            position: fixed; width: 8px; height: 8px;
+            background: var(--blue); border-radius: 50%;
+            pointer-events: none; z-index: 10000;
+            transform: translate(-50%, -50%);
+            opacity: 0.8;
+        }
+        a, button { cursor: none; }
+
+        /* ── NAVBAR ── */
+        /* nav.desktop-nav {
+      
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 18px 56px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #f0f0f0;
+            position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+        } */
+
+        .nav-links { display: flex; align-items: center; gap: 24px; }
+        .divider { width: 1px; height: 18px; background: #ccc; }
+
+        .nav-link {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px; font-weight: 500;
+            color: #222; text-decoration: none;
+            transition: color .2s;
+        }
+        .nav-link.active { font-weight: 700; }
+        .nav-link:hover { color: #3d76f5; }
+
+        .resume-btn {
+            display: flex; align-items: center; gap: 6px;
+            border: 1.5px solid var(--blue); color: var(--blue);
+            border-radius: 999px; padding: 8px 20px;
+            font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600;
+            text-decoration: none; background: transparent;
+            transition: background .2s;
+        }
+        .resume-btn:hover { background: #eef3ff; }
+
+        /* ── MOBILE NAV ── */
+        .mobile-nav {
+            display: none;
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid #f0f0f0;
+            padding: 12px 0 20px;
+            z-index: 50;
+        }
+        .mobile-nav-content {
+            display: flex; justify-content: space-around; align-items: center;
+        }
+        .mobile-nav-link {
+            display: flex; flex-direction: column; align-items: center;
+            gap: 3px; text-decoration: none; color: #222;
+            font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600;
+            transition: color .2s;
+        }
+        .mobile-nav-link:hover {
+            color: #3d76f5;
+        }
+        .mobile-nav-icon { font-size: 20px; }
+
+        @media (max-width: 868px) {
+            nav.desktop-nav { display: none; }
+            .mobile-nav { display: block; }
+            body { padding-bottom: 80px; }
+        }
+
+        /* ── PAGE LAYOUT ── */
+        .page-wrapper {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 110px 48px 80px;
+        }
+
+        @media (max-width: 768px) {
+            .page-wrapper { padding: 90px 20px 60px; }
+        }
+
+        /* ── HERO INTRO ── */
+        .hero-row {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 64px;
+            align-items: start;
+            margin-bottom: 80px;
+        }
+
+        @media (max-width: 900px) {
+            .hero-row { grid-template-columns: 1fr; gap: 40px; }
+        }
+
+        /* ── LANYARD ID CARD ── */
+        .lanyard-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Lanyard strap SVG */
+        .lanyard-svg {
+            width: 100px;
+            margin-bottom: -4px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .id-card {
+            width: 220px;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.13), 0 4px 16px rgba(0,0,0,0.06);
+            overflow: hidden;
+            position: relative;
+            animation: cardFloat 4s ease-in-out infinite;
+            border: 1px solid #e8e8e8;
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0) rotate(-1deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--blue) 0%, #6b9fff 100%);
+            padding: 14px 16px 10px;
+            text-align: center;
+        }
+
+        .card-logo-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px; font-weight: 700;
+            color: rgba(255,255,255,0.85);
+            letter-spacing: 1px; text-transform: uppercase;
+        }
+
+        .card-photo-wrap {
+            background: #f7f7f7;
+            padding: 16px 16px 0;
+            display: flex; justify-content: center;
+        }
+
+        .card-photo {
+            width: 120px; height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+            background: url("/assests/aibal.png");
+                background-size: cover;
+                background-position: center;
+                background-color: #0a83e6;
+            /* background: linear-gradient(135deg, #dce8ff, #f0e8ff); */
+            display: flex; align-items: center; justify-content: center;
+            font-size: 48px;
+        }
+
+        .card-body {
+            padding: 14px 16px 18px;
+            text-align: center;
+        }
+
+        .card-name {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px; font-weight: 700;
+            color: #111; margin-bottom: 4px;
+        }
+        .card-role {
+            font-size: 11px; color: var(--blue);
+            font-weight: 500; letter-spacing: 0.03em;
+            margin-bottom: 12px;
+        }
+        .card-divider { height: 1px; background: #efefef; margin-bottom: 10px; }
+
+        .card-detail {
+            font-size: 10px; color: #999; margin-bottom: 3px;
+        }
+        .card-detail span { color: #444; font-weight: 500; }
+
+        .card-barcode {
+            margin-top: 10px;
+            display: flex; gap: 2px; justify-content: center;
+        }
+        .barcode-line {
+            height: 20px; background: #222; border-radius: 1px;
+        }
+
+        /* ── INTRO TEXT ── */
+        .intro-block {
+            padding-top: 8px;
+        }
+
+        .greeting-line {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px; font-weight: 600;
+            color: var(--blue); letter-spacing: 1px;
+            text-transform: uppercase; margin-bottom: 12px;
+        }
+
+        .intro-heading {
+            font-family: 'Inter', sans-serif;
+            font-size: 48px; font-weight: 700;
+            color: #111; line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .intro-heading .highlight { color: var(--blue); }
+
+        .intro-body {
+            font-size: 16px; color: #555;
+            line-height: 1.75; max-width: 520px;
+            margin-bottom: 28px;
+        }
+
+        .tag-row {
+            display: flex; flex-wrap: wrap; gap: 8px;
+        }
+
+        .tag {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px; font-weight: 500;
+            padding: 8px 16px; border-radius: 999px;
+            border: 1.5px solid var(--border);
+            color: #444;
+            transition: all .2s;
+        }
+        .tag:hover {
+            border-color: var(--blue); color: var(--blue);
+            background: var(--blue-light);
+        }
+
+        /* ── SECTION LABEL ── */
+        .section-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 12px; font-weight: 600;
+            letter-spacing: 1px; text-transform: uppercase;
+            color: var(--blue); margin-bottom: 20px;
+        }
+
+        /* ── THREE COLUMN GRID ── */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 280px;
+            gap: 40px;
+            border-top: 1px solid var(--border);
+            padding-top: 48px;
+        }
+
+        @media (max-width: 960px) {
+            .info-grid { grid-template-columns: 1fr 1fr; }
+            .contact-col { grid-column: 1 / -1; }
+        }
+        @media (max-width: 600px) {
+            .info-grid { grid-template-columns: 1fr; }
+            .contact-col { grid-column: auto; }
+        }
+
+        /* ── EXPERIENCE ENTRIES ── */
+        .exp-entry {
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+        .exp-entry:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+        .exp-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 15px; font-weight: 600;
+            color: #111; margin-bottom: 4px; line-height: 1.3;
+        }
+
+        .exp-org {
+            font-size: 12px; color: var(--blue);
+            font-weight: 500; margin-bottom: 3px;
+        }
+
+        .exp-date {
+            font-size: 11px; color: #aaa;
+            letter-spacing: 0.03em;
+        }
+
+        /* ── CONTACT ── */
+        .contact-item {
+            display: flex; align-items: center; gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+            text-decoration: none;
+            transition: all .2s;
+        }
+        .contact-item:last-child { border-bottom: none; }
+        .contact-item:hover .contact-label { color: var(--blue); }
+        .contact-item:hover .contact-icon-wrap { background: var(--blue-light); }
+
+        .contact-icon-wrap {
+            width: 36px; height: 36px;
+            border-radius: 10px; background: var(--light);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px;
+            transition: background .2s;
+            flex-shrink: 0;
+        }
+
+        .contact-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 13px; font-weight: 600; color: #222;
+            transition: color .2s;
+        }
+        .contact-sub {
+            font-size: 11px; color: #aaa; line-height: 1.3;
+            word-break: break-all;
+        }
+
+        /* ── SOFTWARES ── */
+        .software-grid {
+            display: flex; flex-wrap: wrap; gap: 10px;
+            margin-top: 16px;
+        }
+
+        .sw-badge {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+            background: var(--light); border: 1px solid var(--border);
+            transition: transform .2s, box-shadow .2s;
+            position: relative;
+            overflow: hidden;
+        }
+        .sw-badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        /* Figma */
+        .sw-figma { background: #1e1e1e; }
+        .sw-ps { background: #001e36; }
+        .sw-sketch { background: #ffa800; }
+        .sw-xd { background: #ff61f6; background: linear-gradient(135deg, #470137, #ff61f6); }
+        .sw-ai { background: #ff9a00; background: linear-gradient(135deg, #330000, #ff9a00); }
+        .sw-id { background: #49021f; }
+
+        /* ── FOOTER STRIP ── */
+        .footer-strip {
+            margin-top: 80px;
+            border-top: 1px solid var(--border);
+            padding-top: 32px;
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 16px;
+        }
+
+        .footer-name {
+            font-family: 'Inter', sans-serif;
+            font-size: 14px; font-weight: 600;
+            color: #111;
+        }
+        .footer-copy {
+            font-size: 12px; color: #bbb;
+        }
+
+        /* ── ANIMATE IN ── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(24px);
+            animation: fadeUp 0.7s ease forwards;
+        }
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.35s; }
+        .delay-4 { animation-delay: 0.5s; }
+
+        /* Barcode random widths */
+        .b1 { width: 2px; } .b2 { width: 3px; } .b3 { width: 1px; }
+        .b4 { width: 2px; } .b5 { width: 4px; } .b6 { width: 1px; }
+        .b7 { width: 2px; } .b8 { width: 3px; } .b9 { width: 1px; }
+        .b10 { width: 2px; } .b11 { width: 3px; } .b12 { width: 1px; }
+        .b13 { width: 2px; } .b14 { width: 4px; } .b15 { width: 1px; }
+    </style>
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-follower" id="cursorFollower"></div>
+    <div class="cursor-dot" id="cursorDot"></div>
+
+    <!-- Desktop Navbar -->
+  <nav class=" desktop-nav lg:flex items-center justify-between lg:px-12 lg:py-5 bg-white fixed top-0 left-0 right-0 z-50" style="border-bottom: 1px solid #f0f0f0; backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.95);" role="navigation" aria-label="Main navigation">
+        <div class="nav-links pl-[110px]">
+            <a class="nav-link" href="/">Home</a>
+            <div class="divider"></div>
+            <a class="nav-link active" href="about" aria-current="page">About</a>
+            <div class="divider"></div>
+            <a class="nav-link" href="/projects">Projects</a>
+            <div class="divider"></div>
+            <a class="nav-link" href="/case-study">Case Study</a>
+            <div class="divider"></div>
+            <a class="nav-link" href="/services">Services</a>
+        </div>
+        <a class="resume-btn" href="#">
+            <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
+                <path d="M8 2v9M4 8l4 4 4-4M2 14h12" stroke="#3d76f5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Resume
+            <svg width="11" height="11" viewBox="0 0 16 16" fill="none">
+                <path d="M4 6l4 4 4-4" stroke="#3d76f5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a>
+    </nav>
+
+    <!-- Mobile Nav -->
+    <nav class="mobile-nav" role="navigation" aria-label="Mobile navigation">
+        <div class="mobile-nav-content">
+            <a class="mobile-nav-link" href="/" aria-label="Home"><span class="mobile-nav-icon">🏠</span><span>Home</span></a>
+            <a class="mobile-nav-link" href="/about" aria-label="About" style="color: #3d76f5; font-weight: 700;"><span class="mobile-nav-icon">👤</span><span>About</span></a>
+            <a class="mobile-nav-link" href="/projects" aria-label="Projects"><span class="mobile-nav-icon">💼</span><span>Projects</span></a>
+            <a class="mobile-nav-link" href="/case-study" aria-label="Case Study"><span class="mobile-nav-icon">📋</span><span>Case Study</span></a>
+            <a class="mobile-nav-link" href="/services" aria-label="Services"><span class="mobile-nav-icon">⚙️</span><span>Services</span></a>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <main class="page-wrapper">
+
+        <!-- Hero Row -->
+        <div class="hero-row">
+            <!-- Lanyard + ID Card -->
+            <div class="lanyard-wrap fade-up">
+                <!-- Lanyard SVG strap -->
+               
+                <!-- ID Card -->
+                <div class="id-card">
+                    <div class="card-header">
+                        <div class="card-logo-text">Portfolio · 2025</div>
+                    </div>
+                    <div class="card-photo-wrap">
+                        <div class="card-photo"></div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-name">Aibal Jose</div>
+                        <div class="card-role">Software Engineer (MCA)</div>
+                        <div class="card-divider"></div>
+                        <div class="card-detail">Based in <span>Kerala, IN</span></div>
+                        <div class="card-detail">Available for <span>Freelance</span></div>
+                        <div class="card-barcode">
+                            <div class="barcode-line b1"></div><div class="barcode-line b2"></div>
+                            <div class="barcode-line b3"></div><div class="barcode-line b4"></div>
+                            <div class="barcode-line b5"></div><div class="barcode-line b6"></div>
+                            <div class="barcode-line b7"></div><div class="barcode-line b8"></div>
+                            <div class="barcode-line b9"></div><div class="barcode-line b10"></div>
+                            <div class="barcode-line b11"></div><div class="barcode-line b12"></div>
+                            <div class="barcode-line b13"></div><div class="barcode-line b14"></div>
+                            <div class="barcode-line b15"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Intro Text -->
+            <div class="intro-block">
+                <div class="greeting-line fade-up delay-1">👋 Hello there</div>
+                <h1 class="intro-heading fade-up delay-2">
+                    Hi, I'm <span class="highlight">Aibal Jose</span>
+                </h1>
+                <p class="intro-body fade-up delay-3">
+                    I'm an MCA Integrated student passionate about building scalable software solutions. My expertise spans Flutter, React, and Tailwind for frontend development, with deep interests in Agent Development Kits, AI, cybersecurity, and low-code/no-code platforms. I believe great software isn't just about code — it's about solving real problems efficiently.
+                </p>
+                <div class="tag-row fade-up delay-4">
+                    <span class="tag">Flutter</span>
+                    <span class="tag">React</span>
+                    <span class="tag">Tailwind CSS</span>
+                    <span class="tag">Agent Development Kit</span>
+                    <span class="tag">Cybersecurity</span>
+                    <span class="tag">AI/ML</span>
+                    <span class="tag">Low Code/No Code</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Info Grid: Experience / Volunteering / Contact -->
+        <div class="info-grid fade-up delay-3">
+
+            <!-- Experience Column -->
+            <div>
+                <div class="section-label">Experience</div>
+
+                <div class="exp-entry">
+                    <div class="exp-title">Fedbytes Technologies LLP.</div>
+                    <div class="exp-org">Freelance Full Stack Developer</div>
+                    <div class="exp-date">2025 – Present</div>
+                </div>
+
+                <div class="exp-entry">
+                    <div class="exp-title">Incial</div>
+                    <div class="exp-org">Freelance Full Stack Developer</div>
+                    <div class="exp-date">2025 – Present</div>
+                </div>
+
+                <div class="exp-entry">
+                    <div class="exp-title">AESSaS - Amal Jyothi College of Engineering</div>
+                    <div class="exp-org">Freelance Full Stack Developer</div>
+                    <div class="exp-date">2024 – Present</div>
+                </div>
+
+                <div class="exp-entry">
+                    <div class="exp-title">ICFOSS - Govt. of Kerala Initiative</div>
+                    <div class="exp-org">Open IoT Ambassador</div>
+                    <div class="exp-date">2023</div>
+                </div>
+
+                <div class="exp-entry">
+                    <div class="exp-title">Mulearn Fondation</div>
+                    <div class="exp-org">Low Code IG lead</div>
+                    <div class="exp-date">2025</div>
+                </div>
+            </div>
+
+            <!-- Volunteering / Activities Column -->
+            <div>
+                <div class="section-label">Activities</div>
+
+                <div class="exp-entry">
+                    <div class="exp-title">Mulearn Campus Lead</div>
+                    <div class="exp-org">Mulearn</div>
+                    <div class="exp-date">2025– Present</div>
+                </div>
+
+                <div class="exp-entry">
+                    <div class="exp-title">Peer Mentor</div>
+                    <div class="exp-org">Kerala Economy Knowledge Mission</div>
+                    <div class="exp-date">2025 – Present</div>
+                </div>
+
+                <div class="exp-entry">
+                    <div class="exp-title">Google Student Ambassador</div>
+                    <div class="exp-org">Google</div>
+                    <div class="exp-date">2026 – Present</div>
+                </div>
+
+                <div class="exp-entry">
+                    <div class="exp-title">Workshop Speaker</div>
+                    <div class="exp-org">Community Events</div>
+                    <div class="exp-date">2023 – Present</div>
+                </div>
+            </div>
+
+            <!-- Contact + Softwares Column -->
+            <div class="contact-col">
+                <div class="section-label">Contact</div>
+
+                <a class="contact-item" href="https://www.behance.net/aibaljose" target="_blank">
+                    <div class="contact-icon-wrap">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#053eff"><path d="M22 7h-7V5h7v2zM5 8.5C6.4 8.5 7.5 7.4 7.5 6S6.4 3.5 5 3.5H0v17h5.5c1.9 0 3.5-1.4 3.5-3.5 0-1.4-.8-2.6-2-3.1.7-.5 1-1.2 1-2zM2 5.5h2.5c.8 0 1.5.7 1.5 1.5S5.3 8.5 4.5 8.5H2V5.5zm3 12H2v-3.5h3c.8 0 1.5.7 1.5 1.5s-.7 2-1.5 2zm10-.5c-1.7 0-3-1.3-3-3h8c0-.3 0-.5 0-.5 0-2.8-2.2-5-5-5s-5 2.2-5 5 2.2 5 5 5c2.2 0 4-1.4 4.7-3.3h-2.1c-.5.8-1.5 1.3-2.6 1.3zm0-6.5c1.4 0 2.5.9 2.9 2h-5.8c.4-1.1 1.5-2 2.9-2z"/></svg>
+                    </div>
+                    <div>
+                        <div class="contact-label">Behance</div>
+                        <div class="contact-sub">behance.net/aibaljose</div>
+                    </div>
+                </a>
+
+                <a class="contact-item" href="https://www.linkedin.com/in/aibaljose" target="_blank">
+                    <div class="contact-icon-wrap">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#0077b5"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.03-1.85-3.03-1.85 0-2.13 1.45-2.13 2.94v5.66H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.35-1.85 3.59 0 4.25 2.36 4.25 5.43v6.31zM5.34 7.43C4.2 7.43 3.27 6.5 3.27 5.36a2.07 2.07 0 014.14 0c0 1.14-.93 2.07-2.07 2.07zM7.12 20.45H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.46C23.21 24 24 23.23 24 22.28V1.72C24 .77 23.21 0 22.23 0z"/></svg>
+                    </div>
+                    <div>
+                        <div class="contact-label">LinkedIn</div>
+                        <div class="contact-sub">linkedin.com/in/aibaljose</div>
+                    </div>
+                </a>
+
+                <a class="contact-item" href="mailto:aibal@gmail.com">
+                    <div class="contact-icon-wrap">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="#ea4335"><path d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    </div>
+                    <div>
+                        <div class="contact-label">Email</div>
+                        <div class="contact-sub">aibal@gmail.com</div>
+                    </div>
+                </a>
+
+                <!-- Softwares -->
+                <div style="margin-top: 32px;">
+                    <div class="section-label">Softwares</div>
+                    <div class="software-grid">
+                        <div class="sw-badge sw-figma" title="Figma">
+                            <svg width="20" height="20" viewBox="0 0 38 57" fill="none">
+                                <path d="M19 28.5A9.5 9.5 0 1 1 28.5 19 9.5 9.5 0 0 1 19 28.5z" fill="#1ABCFE"/>
+                                <path d="M0 47.5A9.5 9.5 0 0 1 9.5 38H19v9.5A9.5 9.5 0 1 1 0 47.5z" fill="#0ACF83"/>
+                                <path d="M19 0v19h9.5A9.5 9.5 0 0 0 19 0z" fill="#FF7262"/>
+                                <path d="M0 9.5A9.5 9.5 0 0 0 9.5 19H19V0H9.5A9.5 9.5 0 0 0 0 9.5z" fill="#F24E1E"/>
+                                <path d="M0 28.5A9.5 9.5 0 0 0 9.5 38H19V19H9.5A9.5 9.5 0 0 0 0 28.5z" fill="#A259FF"/>
+                            </svg>
+                        </div>
+                        <div class="sw-badge sw-ps" title="Photoshop">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon" style="width: 1em;height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1"><path d="M512 431.36c43.946667 0 79.786667 35.84 79.786667 80.64 0 42.666667-35.84 78.933333-79.786667 78.933333S432.213333 554.666667 432.213333 512c0-44.8 35.84-80.64 79.786667-80.64M314.453333 853.333333c26.88 16.213333 85.76-8.533333 153.6-72.533333-22.186667-25.173333-43.946667-52.48-64.426666-81.066667a968.533333 968.533333 0 0 1-102.4-15.36c-21.76 91.306667-13.653333 154.026667 13.226666 168.96m30.293334-244.906666l-12.373334-21.76c-4.693333 12.373333-9.386667 24.746667-12.373333 36.693333 11.52 2.56 24.32 4.693333 37.546667 6.826667l-12.8-21.76m279.04-32.426667l34.56-64-34.56-64c-12.8-22.613333-26.453333-42.666667-38.826667-62.72C561.92 384 537.6 384 512 384s-49.92 0-72.96 1.28c-12.373333 20.053333-26.026667 40.106667-38.826667 62.72L365.653333 512l34.56 64c12.8 22.613333 26.453333 42.666667 38.826667 62.72 23.04 1.28 47.36 1.28 72.96 1.28s49.92 0 72.96-1.28c12.373333-20.053333 26.026667-40.106667 38.826667-62.72M512 289.28c-8.106667 9.386667-16.64 19.2-25.173333 30.72h50.346666c-8.533333-11.52-17.066667-21.333333-25.173333-30.72m0 445.44c8.106667-9.386667 16.64-19.2 25.173333-30.72h-50.346666c8.533333 11.52 17.066667 21.333333 25.173333 30.72M709.12 170.666667c-26.453333-16.213333-85.333333 8.533333-153.173333 72.533333 22.186667 25.173333 43.946667 52.48 64.426666 81.066667 34.986667 3.413333 69.546667 8.533333 102.4 15.36 21.76-91.306667 13.653333-154.026667-13.653333-168.96m-29.866667 244.906666l12.373334 21.76c4.693333-12.373333 9.386667-24.746667 12.373333-36.693333-11.52-2.56-24.32-4.693333-37.546667-6.826667l12.8 21.76m61.866667-300.8c62.72 35.84 69.546667 130.133333 43.093333 240.213334 108.373333 32 186.453333 84.906667 186.453334 157.013333s-78.08 125.013333-186.453334 157.013333c26.453333 110.08 19.626667 204.373333-43.093333 240.213334-62.293333 35.84-147.2-5.12-229.12-83.2-81.92 78.08-166.826667 119.04-229.546667 83.2-62.293333-35.84-69.12-130.133333-42.666666-240.213334-108.373333-32-186.453333-84.906667-186.453334-157.013333s78.08-125.013333 186.453334-157.013333c-26.453333-110.08-19.626667-204.373333 42.666666-240.213334 62.72-35.84 147.626667 5.12 229.546667 83.2 81.92-78.08 166.826667-119.04 229.12-83.2M728.746667 512c14.506667 32 27.306667 64 37.973333 96.426667 89.6-26.88 139.946667-65.28 139.946667-96.426667s-50.346667-69.546667-139.946667-96.426667c-10.666667 32.426667-23.466667 64.426667-37.973333 96.426667M295.253333 512c-14.506667-32-27.306667-64-37.973333-96.426667-89.6 26.88-139.946667 65.28-139.946667 96.426667s50.346667 69.546667 139.946667 96.426667c10.666667-32.426667 23.466667-64.426667 37.973333-96.426667m384 96.426667l-12.8 21.76c13.226667-2.133333 26.026667-4.266667 37.546667-6.826667-2.986667-11.946667-7.68-24.32-12.373333-36.693333l-12.373334 21.76m-123.306666 172.373333c67.84 64 126.72 88.746667 153.173333 72.533333 27.306667-14.933333 35.413333-77.653333 13.653333-168.96-32.853333 6.826667-67.413333 11.946667-102.4 15.36-20.48 28.586667-42.24 55.893333-64.426666 81.066667M344.746667 415.573333l12.8-21.76c-13.226667 2.133333-26.026667 4.266667-37.546667 6.826667 2.986667 11.946667 7.68 24.32 12.373333 36.693333l12.373334-21.76m123.306666-172.373333C400.213333 179.2 341.333333 154.453333 314.453333 170.666667c-26.88 14.933333-34.986667 77.653333-13.226666 168.96a968.533333 968.533333 0 0 1 102.4-15.36c20.48-28.586667 42.24-55.893333 64.426666-81.066667z" fill="#00BCD4"/></svg>
+                        </div>
+                        <div class="sw-badge " title="Flutter">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 0 32 32"><title>file_type_flutter</title><polyline points="15.383 18.316 18.744 15.042 27.093 15.042 19.697 22.438 15.383 18.316 15.383 18.316 15.383 18.316 15.383 18.316 15.383 18.316" style="fill:#40d0fd"/><polygon points="4.907 16.125 9.106 20.424 27.093 2.287 18.744 2.287 4.907 16.125" style="fill:#41d0fd;isolation:isolate"/><polygon points="11.176 22.479 15.435 26.675 19.697 22.438 15.383 18.316 11.176 22.479" style="fill:#1fbcfd"/><polygon points="15.435 26.675 19.697 22.438 26.989 29.813 18.593 29.813 15.435 26.675" style="fill:#095a9d"/><polygon points="15.435 26.675 19.406 25.354 18.068 24.057 15.435 26.675" style="fill:#0e5199"/></svg>
+                        </div>
+                        <div class="sw-badge sw-psF" title="Tailwind css">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 0 32 32"><title>file_type_tailwind</title><path d="M9,13.7q1.4-5.6,7-5.6c5.6,0,6.3,4.2,9.1,4.9q2.8.7,4.9-2.1-1.4,5.6-7,5.6c-5.6,0-6.3-4.2-9.1-4.9Q11.1,10.9,9,13.7ZM2,22.1q1.4-5.6,7-5.6c5.6,0,6.3,4.2,9.1,4.9q2.8.7,4.9-2.1-1.4,5.6-7,5.6c-5.6,0-6.3-4.2-9.1-4.9Q4.1,19.3,2,22.1Z" style="fill:#44a8b3"/></svg>
+                        </div>
+                        <div class="sw-badge sw-ai" title="Adobe Illustrator">
+                            <svg width="22" height="22" viewBox="0 0 240 234" fill="none">
+                                <rect width="240" height="234" rx="42" fill="#330000"/>
+                                <path d="M120.7 64L176 170h-22.7l-14.5-29.3H98.5L84 170H62L120.7 64zm-15.5 58.3h29.3l-14.8-30-14.5 30zM186 170V74h19v96h-19z" fill="#ff9a00"/>
+                            </svg>
+                        </div>
+                        <div class="sw-badge sw-id" title="Adobe InDesign">
+                            <svg width="22" height="22" viewBox="0 0 240 234" fill="none">
+                                <rect width="240" height="234" rx="42" fill="#49021f"/>
+                                <path d="M56 170V64h22.5c17.5 0 30 4 39.5 12.5 9.5 8 14.8 20.3 14.8 36.3 0 17-5.5 30-15.5 38.5C107 159.5 93 165 74 165c-5.3 0-12-.3-18-.3V170H56zm19-16.3c2 .3 4.5.5 7.3.5 20 0 32-11.5 32-35.5 0-21-11-34.5-31-34.5-3.5 0-6.3.3-8.3.7v68.8zm83-4.7c-1.5 0-3.5-1-3.5-3.5V64h19v80c0 5.3-4.8 5-7 5h-8.5zm7-89.8c-6 0-10.8-4.8-10.8-10.7 0-6 4.8-10.5 10.8-10.5 6.3 0 11 4.5 11 10.5 0 5.9-4.7 10.7-11 10.7z" fill="#ff3a6b"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Strip -->
+        <div class="footer-strip">
+            <div class="footer-name">Aibal Jose · Portfolio 2025</div>
+            <div class="footer-copy">Designed & built with care ✦</div>
+        </div>
+
+    </main>
+
+    <script>
+        const cursorFollower = document.getElementById('cursorFollower');
+        const cursorDot = document.getElementById('cursorDot');
+        let mouseX = 0;
+        let mouseY = 0;
+        let followerX = 0;
+        let followerY = 0;
+        let isMouseMoving = false;
+        let mouseTimeout;
+
+        // Track mouse position
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            // Update dot position immediately
+            cursorDot.style.left = mouseX + 'px';
+            cursorDot.style.top = mouseY + 'px';
+
+            // Show elements on movement
+            if (!isMouseMoving) {
+                isMouseMoving = true;
+                cursorFollower.style.opacity = '0.6';
+                cursorDot.style.opacity = '0.8';
+            }
+
+            // Clear timeout and set new one
+            clearTimeout(mouseTimeout);
+            mouseTimeout = setTimeout(() => {
+                isMouseMoving = false;
+                cursorFollower.style.opacity = '0.3';
+                cursorDot.style.opacity = '0.3';
+            }, 1000);
+        });
+
+        // Smooth follower animation
+        function animateFollower() {
+            const distance = 20; // Delay distance
+            followerX += (mouseX - followerX) * 0.15;
+            followerY += (mouseY - followerY) * 0.15;
+
+            cursorFollower.style.left = followerX + 'px';
+            cursorFollower.style.top = followerY + 'px';
+
+            requestAnimationFrame(animateFollower);
+        }
+
+        animateFollower();
+
+        // Enhanced effect on hover
+        const interactiveElements = document.querySelectorAll('a, button, [role="navigation"] a');
+        
+        interactiveElements.forEach((element) => {
+            element.addEventListener('mouseenter', () => {
+                cursorFollower.classList.add('active');
+                cursorFollower.style.width = '40px';
+                cursorFollower.style.height = '40px';
+            });
+
+            element.addEventListener('mouseleave', () => {
+                cursorFollower.classList.remove('active');
+                cursorFollower.style.width = '30px';
+                cursorFollower.style.height = '30px';
+            });
+        });
+
+        // Hide custom cursor when leaving window
+        document.addEventListener('mouseleave', () => {
+            cursorFollower.style.opacity = '0';
+            cursorDot.style.opacity = '0';
+        });
+
+        document.addEventListener('mouseenter', () => {
+            cursorFollower.style.opacity = '0.6';
+            cursorDot.style.opacity = '0.8';
+        });
+    </script>
+
+</body>
+</html>
