@@ -15,14 +15,14 @@
   <meta property="og:title" content="Aibal Jose — Software Engineer & Full-Stack Developer" />
   <meta property="og:description" content="Explore my portfolio of scalable web applications and modern tech projects. Available for freelance and full-time opportunities." />
   <meta property="og:site_name" content="Aibal Jose Portfolio" />
-  <meta property="og:image" content="aibal.png" />
+  <meta property="og:image" content="assests/aibal.png" />
   <meta property="og:image:alt" content="Aibal Jose Portfolio" />
   
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Aibal Jose — Software Engineer Portfolio" />
   <meta name="twitter:description" content="Full-stack developer building scalable applications with modern technologies." />
-  <meta name="twitter:image" content="aibal.png" />
+  <meta name="twitter:image" content="assests/aibal.png" />
   
   <!-- Canonical URL -->
   <link rel="canonical" href="https://aibalj.com/" />
@@ -42,7 +42,7 @@
     "@type": "Person",
     "name": "Aibal Jose",
     "url": "https://aibalj.com",
-    "image": "aibal.png",
+    "image": "assests/aibal.png",
     "description": "Software Engineering student building scalable apps with modern technologies",
     "jobTitle": "Full-Stack Software Developer",
     "sameAs": [
@@ -677,6 +677,12 @@ font-size: 8px;
         
       }
     }
+
+          @keyframes cardFloat {
+            0%, 100% { transform: translateY(0) rotate(-1deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+
   </style>
 </head>
 <body class="bg-white overflow-x-hidden">
@@ -688,15 +694,15 @@ font-size: 8px;
   <!-- Navbar -->
   <nav class=" desktop-nav lg:flex items-center justify-between lg:px-12 lg:py-5 bg-white fixed top-0 left-0 right-0 z-50" style="border-bottom: 1px solid #f0f0f0; backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.95);" role="navigation" aria-label="Main navigation">
     <div class="flex items-center gap-6 pl-[110px]">
-      <a class="nav-link active" href="#home" aria-current="page">Home</a>
+      <a class="nav-link active" href="/" aria-current="page">Home</a>
       <div class="divider" aria-hidden="true"></div>
-      <a class="nav-link" href="#about">About</a>
+      <a class="nav-link" href="about">About</a>
       <div class="divider" aria-hidden="true"></div>
-      <a class="nav-link" href="#projects">Project</a>
+      <a class="nav-link" href="projects">Project</a>
       <div class="divider" aria-hidden="true"></div>
-      <a class="nav-link" href="#projects">Case Study</a>
+      <a class="nav-link" href="case-study">Case Study</a>
       <div class="divider" aria-hidden="true"></div>
-      <a class="nav-link" href="#services">Services</a>
+      <a class="nav-link" href="services">Services</a>
     </div>
     <a class="resume-btn" href="#" aria-label="Download Resume">
       <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -712,25 +718,25 @@ font-size: 8px;
   <!-- Mobile Bottom Navigation -->
   <nav class="mobile-nav" role="navigation" aria-label="Mobile navigation">
     <div class="mobile-nav-content">
-      <a class="mobile-nav-link" href="#home" aria-label="Home">
+      <a class="mobile-nav-link" href="/" aria-label="Home" style="color: #3d76f5; font-weight: 700;">
         <span class="mobile-nav-icon">🏠</span>
         <span>Home</span>
       </a>
-      <a class="mobile-nav-link" href="#about" aria-label="About">
+      <a class="mobile-nav-link" href="/about" aria-label="About">
         <span class="mobile-nav-icon">👤</span>
         <span>About</span>
       </a>
-      <a class="mobile-nav-link" href="#projects" aria-label="Projects">
+      <a class="mobile-nav-link" href="/projects" aria-label="Projects">
         <span class="mobile-nav-icon">💼</span>
         <span>Projects</span>
       </a>
-      <a class="mobile-nav-link" href="#contact" aria-label="Contact">
-        <span class="mobile-nav-icon">💬</span>
-        <span>Contact</span>
+      <a class="mobile-nav-link" href="/case-study" aria-label="Case Study">
+        <span class="mobile-nav-icon">📋</span>
+        <span>Case Study</span>
       </a>
-      <a class="mobile-nav-link" href="#" aria-label="Resume">
-        <span class="mobile-nav-icon">📄</span>
-        <span>Resume</span>
+      <a class="mobile-nav-link" href="/services" aria-label="Services">
+        <span class="mobile-nav-icon">⚙️</span>
+        <span>Services</span>
       </a>
     </div>
   </nav>
@@ -753,7 +759,7 @@ font-size: 8px;
           <div>
             <div class="badge-label mb-1">Campus Lead</div>
             <div class="tag-logo">
-              <img src="mulearn.png" height="100px" width="100" alt="µLearn - Campus Lead badge" loading="lazy" />
+              <img src="assests/mulearn.png" height="100px" width="100" alt="µLearn - Campus Lead badge" loading="lazy" />
             </div>
           </div>
 
@@ -763,7 +769,7 @@ font-size: 8px;
           <div>
             <div class="badge-label mb-1">Ambassador</div>
             <div class="tag-logo">
-              <img src="gemnipng.png" height="45px" width="45px" alt="Google Student Ambassador badge" loading="lazy" />
+              <img src="assests/gemnipng.png" height="45px" width="45px" alt="Google Student Ambassador badge" loading="lazy" />
               <div>
                 <div class="lg:text-[13px]" style=" font-weight: 700; color: #222; line-height: 1.2;">Google Student</div>
                 <div class="lg:text-[13px]" style=" font-weight: 700; color: #222; line-height: 1.2;">Ambassador</div>
@@ -818,24 +824,154 @@ font-size: 8px;
       </article>
 
       <!-- Right — Photo with Floating Cards -->
-      <div class="lg:ml-[60px] lg:mr-[40px] lg:mt-[40px]" style="position: relative; flex-shrink: 0;">
-        <div class="floating-cards-container lg:relative lg:h-[500px] lg:w-[400px]">
-          <!-- Floating Tech Cards -->
-          <div class="floating-card" title="React"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png?_=20220125121207" alt=""></div>
-          <div class="floating-card" title="Flutter"><img src="https://flutter.dev/assets/icon_flutter.817b4a56b047d0d36b338dd9ffd44dbd.svg" alt=""></div>
-          <div class="floating-card" title="Android">🤖</div>
-          <div class="floating-card" title="Node.js">🟩</div>
-          <div class="floating-card" title="TypeScript">📘</div>
-          <div class="floating-card" title="Python">🐍</div>
+      <!-- Right — Photo with Floating Cards -->
+<div class="lg:ml-[60px] lg:mr-[40px] lg:mt-[40px]" style="position: relative; flex-shrink: 0;">
 
-          <!-- Profile Photo -->
-          <div class="photo-frame lg:w-[320px] lg:h-[400px]" style=" position: absolute; inset: 0; margin: auto; ">
-            <!-- Professional photo - replace src with actual photo path -->
-            <img src="aibal.png" alt="Aibal Jose - Software Engineer and Full-Stack Developer" style="object-fit: cover;" loading="lazy" onerror="this.style.background='#e8c43a'; this.style.display='block'; this.style.width='400%'; this.style.height='400%';" />
-          </div>
-        </div>
-        <figcaption style="text-align: center; margin-top: 420px; font-size: 13px; color: #666;">Aibal Jose — Full-Stack Developer</figcaption>
+  <!-- REALISTIC LANYARD FROM BACK OF PHOTO FRAME -->
+  <div style="position: absolute; top: -168px; left: 30%; transform: translateX(-50%); width: 140px; height: 280px; z-index: 1; display: flex; flex-direction: column; align-items: center;animation: cardFloat 4s ease-in-out infinite;
+">
+
+    <!-- Neck loop area — two straps coming from top -->
+    <div style="position: relative; width: 140px; height: 200px;">
+
+      <!-- LEFT STRAP -->
+      <div style="
+        position: absolute;
+        left: 60px;
+        top: 0;
+        width: 18px;
+        height: 195px;
+        background: linear-gradient(to right,
+          #1a5fd4 0%,
+          #2a6fee 18%,
+          #3d76f5 35%,
+          #5a8fff 50%,
+          #3d76f5 65%,
+          #2a6fee 82%,
+          #1a5fd4 100%
+        );
+        border-radius: 3px 3px 0 0;
+        transform: rotate(-5deg);
+        transform-origin: bottom center;
+        box-shadow: inset 2px 0 3px rgba(255,255,255,0.25), inset -2px 0 4px rgba(0,0,20,0.2);
+      ">
+        <!-- Stitching line left strap -->
+        <div style="position:absolute; left: 3px; top: 0; bottom: 0; width: 1px; border-left: 1px dashed rgba(255,255,255,0.3);"></div>
+        <div style="position:absolute; right: 3px; top: 0; bottom: 0; width: 1px; border-right: 1px dashed rgba(255,255,255,0.3);"></div>
       </div>
+
+      <!-- RIGHT STRAP -->
+      <div style="
+        position: absolute;
+        right: 60px;
+        top: 0;
+        width: 18px;
+        height: 195px;
+        background: linear-gradient(to right,
+          #1a5fd4 0%,
+          #2a6fee 18%,
+          #3d76f5 35%,
+          #5a8fff 50%,
+          #3d76f5 65%,
+          #2a6fee 82%,
+          #1a5fd4 100%
+        );
+        border-radius: 3px 3px 0 0;
+        transform: rotate(5deg);
+        transform-origin: bottom center;
+        box-shadow: inset 2px 0 3px rgba(255,255,255,0.25), inset -2px 0 4px rgba(0,0,20,0.2);
+      ">
+        <!-- Stitching line right strap -->
+        <div style="position:absolute; left: 3px; top: 0; bottom: 0; width: 1px; border-left: 1px dashed rgba(255,255,255,0.3);"></div>
+        <div style="position:absolute; right: 3px; top: 0; bottom: 0; width: 1px; border-right: 1px dashed rgba(255,255,255,0.3);"></div>
+      </div>
+
+      <!-- WHERE STRAPS MEET — fabric fold/join point -->
+      <div style="
+        position: absolute;
+        bottom: 12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 36px;
+        height: 22px;
+        background: linear-gradient(180deg, #2a6fee 0%, #1a5fd4 100%);
+        border-radius: 4px 4px 2px 2px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.25);
+        z-index: 3;
+      ">
+        <!-- Fold crease line -->
+        <div style="position:absolute; top:50%; left:10%; right:10%; height:1px; background:rgba(255,255,255,0.2); border-radius:1px;"></div>
+      </div>
+
+      <!-- METAL LOBSTER CLASP / HOOK -->
+      <div style="
+        position: absolute;
+        bottom: -18px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 22px;
+        height: 32px;
+        z-index: 4;
+      ">
+        <!-- Clasp body -->
+        <div style="
+          width: 22px;
+          height: 28px;
+          background: linear-gradient(to right, #8a8a8a 0%, #d4d4d4 30%, #f0f0f0 50%, #d0d0d0 70%, #909090 100%);
+          border-radius: 4px 4px 5px 5px;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.6);
+          position: relative;
+          overflow: hidden;
+        ">
+          <!-- Inner oval hole of clasp -->
+          <div style="
+            position: absolute;
+            top: 6px; left: 50%; transform: translateX(-50%);
+            width: 10px; height: 14px;
+            background: #222;
+            border-radius: 5px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.9);
+          "></div>
+          <!-- Spring lever on side -->
+          <div style="
+            position:absolute; right:-1px; top:8px;
+            width:4px; height:10px;
+            background: linear-gradient(to right, #aaa, #e0e0e0, #aaa);
+            border-radius: 0 2px 2px 0;
+            box-shadow: 1px 0 3px rgba(0,0,0,0.3);
+          "></div>
+        </div>
+        <!-- Bottom hook ring -->
+        <div style="
+          width: 14px; height: 8px;
+          margin: 0 auto;
+          background: linear-gradient(to bottom, #b0b0b0, #e0e0e0, #b0b0b0);
+          border-radius: 0 0 8px 8px;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        "></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Floating Cards Container stays exactly as before -->
+  <div class="floating-cards-container lg:relative lg:h-[500px] lg:w-[400px]">
+    <div class="floating-card" title="React"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1280px-React-icon.svg.png?_=20220125121207" alt=""></div>
+    <div class="floating-card" title="Flutter"><img src="https://flutter.dev/assets/icon_flutter.817b4a56b047d0d36b338dd9ffd44dbd.svg" alt=""></div>
+    <div class="floating-card" title="Android">🤖</div>
+    <div class="floating-card" title="Node.js">🟩</div>
+    <div class="floating-card" title="TypeScript">📘</div>
+    <div class="floating-card" title="Python">🐍</div>
+
+    <div class="photo-frame lg:w-[320px] lg:h-[400px]" style="animation: cardFloat 4s ease-in-out infinite;
+position: absolute; inset: 0; margin: auto;">
+      
+      <img src="assests/aibal.png" alt="Aibal Jose - Software Engineer and Full-Stack Developer" style="object-fit: cover;" loading="lazy" onerror="this.style.background='#e8c43a';" />
+    </div>
+  </div>
+  <figcaption style="text-align: center; margin-top: 420px; font-size: 13px; color: #666;">Aibal Jose — Full-Stack Developer</figcaption>
+
+</div>
 
     </div>
   </section>
