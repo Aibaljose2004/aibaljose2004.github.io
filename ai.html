@@ -1,13 +1,214 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Open URL</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Launching CodeSync</title>
+
+<meta http-equiv="refresh" content="3;url=https://codesync-five-xi.vercel.app/home">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg:#0a0a0a;
+    --surface:#111;
+    --line:#242424;
+    --text:#fff;
+    --muted:#9d9d9d;
+    --red:#ff3b30;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:"IBM Plex Mono",monospace;
+    background:var(--bg);
+    color:var(--text);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    position:relative;
+}
+
+/* grid */
+
+body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background-image:
+    linear-gradient(var(--line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:40px 40px;
+    opacity:.18;
+}
+
+/* scan */
+
+body::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:repeating-linear-gradient(
+    transparent 0px,
+    transparent 3px,
+    rgba(255,255,255,.02) 4px);
+    pointer-events:none;
+}
+
+.card{
+    width:min(520px,92%);
+    background:rgba(17,17,17,.92);
+    border:1px solid var(--line);
+    padding:45px;
+    position:relative;
+    z-index:10;
+}
+
+.corner{
+    position:absolute;
+    width:18px;
+    height:18px;
+    border:2px solid white;
+}
+
+.tl{top:-2px;left:-2px;border-right:none;border-bottom:none;}
+.tr{top:-2px;right:-2px;border-left:none;border-bottom:none;}
+.bl{bottom:-2px;left:-2px;border-right:none;border-top:none;}
+.br{bottom:-2px;right:-2px;border-left:none;border-top:none;}
+
+.label{
+    color:var(--muted);
+    font-size:.75rem;
+    letter-spacing:3px;
+}
+
+h1{
+    font-size:2.3rem;
+    margin:18px 0 12px;
+    letter-spacing:4px;
+}
+
+.red{
+    color:var(--red);
+}
+
+.desc{
+    color:#c8c8c8;
+    line-height:1.8;
+}
+
+.line{
+    height:1px;
+    background:var(--line);
+    margin:28px 0;
+}
+
+.progress{
+    height:4px;
+    background:#1f1f1f;
+    overflow:hidden;
+}
+
+.progress span{
+    display:block;
+    height:100%;
+    background:var(--red);
+    width:0%;
+    animation:load 3s linear forwards;
+}
+
+@keyframes load{
+    to{
+        width:100%;
+    }
+}
+
+.footer{
+    display:flex;
+    justify-content:space-between;
+    margin-top:18px;
+    color:var(--muted);
+    font-size:.8rem;
+}
+
+.button{
+    display:inline-block;
+    margin-top:28px;
+    border:1px solid white;
+    color:white;
+    text-decoration:none;
+    padding:12px 22px;
+    transition:.3s;
+}
+
+.button:hover{
+    background:white;
+    color:black;
+}
+
+.dot{
+    width:10px;
+    height:10px;
+    background:var(--red);
+    border-radius:50%;
+    display:inline-block;
+    animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{opacity:1;}
+    50%{opacity:.3;}
+}
+</style>
 </head>
+
 <body>
 
-<button onclick="window.open('https://codesync-five-xi.vercel.app/', '_blank')">
-    Open Website
-</button>
+<div class="card">
+
+<div class="corner tl"></div>
+<div class="corner tr"></div>
+<div class="corner bl"></div>
+<div class="corner br"></div>
+
+<div class="label">
+SYSTEM • REDIRECT
+</div>
+
+<h1>
+CODE<span class="red">SYNC</span>
+</h1>
+
+<p class="desc">
+Initializing workspace...<br>
+Redirecting to the platform in <b>3 seconds</b>.
+</p>
+
+<div class="line"></div>
+
+<div class="progress">
+<span></span>
+</div>
+
+<a class="button" href="https://codesync-five-xi.vercel.app/home">
+OPEN NOW
+</a>
+
+<div class="footer">
+<div><span class="dot"></span> CONNECTING</div>
+<div>BUILD 2026</div>
+</div>
+
+</div>
 
 </body>
 </html>
